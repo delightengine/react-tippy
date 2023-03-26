@@ -16,9 +16,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -119,12 +119,11 @@ var Selectors = exports.Selectors = {
   ARROW: '[x-arrow]',
   TOOLTIPPED_EL: '[data-tooltipped]',
   CONTROLLER: '[data-tippy-controller]'
-};
 
-/**
-* The default settings applied to each instance
-*/
-var Defaults = exports.Defaults = {
+  /**
+  * The default settings applied to each instance
+  */
+};var Defaults = exports.Defaults = {
   html: false,
   position: 'top',
   animation: 'shift',
@@ -159,13 +158,12 @@ var Defaults = exports.Defaults = {
   popperOptions: {},
   open: undefined,
   onRequestClose: function onRequestClose() {}
-};
 
-/**
-* The keys of the defaults object for reducing down into a new object
-* Used in `getIndividualSettings()`
-*/
-var DefaultsKeys = exports.DefaultsKeys = Browser.SUPPORTED && Object.keys(Defaults);
+  /**
+  * The keys of the defaults object for reducing down into a new object
+  * Used in `getIndividualSettings()`
+  */
+};var DefaultsKeys = exports.DefaultsKeys = Browser.SUPPORTED && Object.keys(Defaults);
 
 /***/ }),
 /* 1 */
@@ -912,7 +910,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _react = __webpack_require__(13);
@@ -928,16 +926,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var withTooltip = function withTooltip(Component) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  return function (_ref) {
-    var props = _objectWithoutProperties(_ref, []);
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    return function (_ref) {
+        var props = _objectWithoutProperties(_ref, []);
 
-    return _react2.default.createElement(
-      _component2.default,
-      options,
-      _react2.default.createElement(Component, props)
-    );
-  };
+        return _react2.default.createElement(
+            _component2.default,
+            options,
+            _react2.default.createElement(Component, props)
+        );
+    };
 };
 
 exports.default = withTooltip;
@@ -2357,7 +2355,9 @@ var Tippy = function () {
           // Prevents shown() from firing more than once from early transition cancellations
           data._onShownFired = true;
 
-          _this.callbacks.shown.call(popper);
+          if (typeof _this.callbacks.shown === 'function') {
+            _this.callbacks.shown.call(popper);
+          }
         });
       });
     }
